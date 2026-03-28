@@ -10,7 +10,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t sunny98822/Softuvosunny .'
+                    sh 'docker build -t sunny98822/softuvosunny .'
                     sh 'docker images'
                 }
             }
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-pwd', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                     sh "echo $PASS | docker login -u $USER --password-stdin"
-                    sh 'docker push sunny98822/Softuvosunny'
+                    sh 'docker push sunny98822/softuvosunny'
                 }
             }
         }
